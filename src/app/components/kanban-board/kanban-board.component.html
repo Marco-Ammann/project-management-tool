@@ -1,0 +1,64 @@
+<div class="kanban-board">
+  <h2>Kanban Board</h2>
+  <div class="board">
+    <!-- To Do Column -->
+    <div
+      class="column"
+      (dragover)="allowDrop($event, 'todo')"
+      (drop)="onDrop($event, 'todo')"
+      (dragleave)="onDragLeave($event)"
+    >
+      <h3>To Do</h3>
+      <ng-container *ngFor="let task of tasks">
+        <ng-container *ngIf="task.status === 'todo'">
+          <app-task
+            [task]="task"
+            (delete)="onDeleteTask($event)"
+            (update)="onUpdateTask($event)"
+          ></app-task>
+        </ng-container>
+      </ng-container>
+      <div class="placeholder" *ngIf="isColumnHovered('todo')"></div>
+    </div>
+
+    <!-- In Progress Column -->
+    <div
+      class="column"
+      (dragover)="allowDrop($event, 'in-progress')"
+      (drop)="onDrop($event, 'in-progress')"
+      (dragleave)="onDragLeave($event)"
+    >
+      <h3>In Progress</h3>
+      <ng-container *ngFor="let task of tasks">
+        <ng-container *ngIf="task.status === 'in-progress'">
+          <app-task
+            [task]="task"
+            (delete)="onDeleteTask($event)"
+            (update)="onUpdateTask($event)"
+          ></app-task>
+        </ng-container>
+      </ng-container>
+      <div class="placeholder" *ngIf="isColumnHovered('in-progress')"></div>
+    </div>
+
+    <!-- Done Column -->
+    <div
+      class="column"
+      (dragover)="allowDrop($event, 'done')"
+      (drop)="onDrop($event, 'done')"
+      (dragleave)="onDragLeave($event)"
+    >
+      <h3>Done</h3>
+      <ng-container *ngFor="let task of tasks">
+        <ng-container *ngIf="task.status === 'done'">
+          <app-task
+            [task]="task"
+            (delete)="onDeleteTask($event)"
+            (update)="onUpdateTask($event)"
+          ></app-task>
+        </ng-container>
+      </ng-container>
+      <div class="placeholder" *ngIf="isColumnHovered('done')"></div>
+    </div>
+  </div>
+</div>

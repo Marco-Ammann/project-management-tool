@@ -1,0 +1,84 @@
+@import '../../../styles/styles.scss';
+
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: $card-background;
+  padding: 20px;
+  box-shadow: $box-shadow;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo {
+  margin-bottom: 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.logo h2 {
+  color: $primary-color;
+  margin: 0;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: $text-color;
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  border-radius: $border-radius;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  background-color: lighten($primary-color, 40%);
+  color: $primary-color;
+}
+
+nav a i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .sidenav {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  nav {
+    flex-direction: row;
+    justify-content: space-around;
+    width: auto;
+  }
+
+  nav a {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .logo {
+    display: none;
+  }
+}

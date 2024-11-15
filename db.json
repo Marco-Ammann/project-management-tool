@@ -1,0 +1,52 @@
+{
+  "tasks": [
+    {
+      "id": "8915",
+      "title": "Essen kochen",
+      "description": "mit der Pfanne",
+      "status": "in-progress",
+      "priority": "medium",
+      "assignees": [
+        "Marco Ammann",
+        "Chris Eikholz"
+      ],
+      "dueDate": "2024-11-23",
+      "subtasks": [
+        {
+          "title": "gut rühren",
+          "completed": false
+        },
+        {
+          "title": "danach abwaschen",
+          "completed": false
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "4f87",
+      "firstName": "Marco",
+      "lastName": "Ammann",
+      "email": "marco-ammann@outlook.com"
+    },
+    {
+      "id": "2c07",
+      "firstName": "Chris",
+      "lastName": "Eikholz",
+      "email": "chris@eikholz.ch"
+    },
+    {
+      "id": "c377",
+      "firstName": "Hans",
+      "lastName": "Meer",
+      "email": "meerhans@email.com"
+    },
+    {
+      "id": "daa2",
+      "firstName": "Mercedes",
+      "lastName": "Meer-Zahn",
+      "email": "mercedes@mail.de"
+    }
+  ]
+}

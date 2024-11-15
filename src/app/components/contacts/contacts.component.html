@@ -1,0 +1,49 @@
+<div class="contacts">
+  <h2>Contacts</h2>
+  <form (ngSubmit)="addContact()">
+    <div class="form-section">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input
+          type="text"
+          id="firstName"
+          [(ngModel)]="newContact.firstName"
+          name="firstName"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input
+          type="text"
+          id="lastName"
+          [(ngModel)]="newContact.lastName"
+          name="lastName"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-section">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="newContact.email"
+          name="email"
+          required
+        />
+      </div>
+    </div>
+    <button type="submit" class="submit-button"><i class="fas fa-plus-circle"> Add Contact</i></button>
+  </form>
+
+  <div class="contact-list">
+    <ul>
+      <li *ngFor="let contact of contacts">
+        <span>{{ contact.firstName }} {{ contact.lastName }} - {{ contact.email }}</span>
+        <button (click)="deleteContact(contact.id)"><i class="fa-solid fa-trash"></i></button>
+      </li>
+    </ul>
+  </div>
+</div>

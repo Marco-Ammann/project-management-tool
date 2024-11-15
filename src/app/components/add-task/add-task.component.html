@@ -1,0 +1,114 @@
+<div class="add-task">
+  <h2>Add New Task</h2>
+  <form (ngSubmit)="addTask()">
+    <!-- Task Details Section -->
+    <div class="form-section">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input
+          type="text"
+          id="title"
+          [(ngModel)]="newTask.title"
+          name="title"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-section">
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          [(ngModel)]="newTask.description"
+          name="description"
+          required
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Task Settings Section -->
+    <div class="form-section">
+      <div class="form-group">
+        <label for="dueDate">Due Date:</label>
+        <input
+          type="date"
+          id="dueDate"
+          [(ngModel)]="newTask.dueDate"
+          name="dueDate"
+        />
+      </div>
+      <div class="form-group">
+        <label for="priority">Priority:</label>
+        <select
+          id="priority"
+          [(ngModel)]="newTask.priority"
+          name="priority"
+          required
+        >
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Assignees Section -->
+    <div class="form-section">
+      <div class="form-group">
+        <label>Assign Users:</label>
+        <div class="custom-select" (clickOutside)="closeDropdown()">
+          <div class="selected" (click)="toggleDropdown($event)">
+            {{ getSelectedContactsDisplay() }}
+          </div>
+          <div class="dropdown" *ngIf="dropdownOpen">
+            <div
+              *ngFor="let user of contacts"
+              (click)="toggleUserSelection(user)"
+            >
+              <input type="checkbox" [checked]="isSelected(user)" />
+              {{ user.firstName }} {{ user.lastName }}
+            </div>
+          </div>
+        </div>
+        <div class="selected-users">
+          <div *ngFor="let user of selectedContacts" class="user-circle">
+            {{ user.initials }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subtasks Section -->
+    <div class="form-section subtasks-section">
+      <div class="form-group">
+        <label for="subtaskInput">Subtasks:</label>
+        <div class="subtasks-input">
+          <input
+            type="text"
+            id="subtaskInput"
+            [(ngModel)]="newSubtask.title"
+            name="subtaskInput"
+            placeholder="Add a subtask"
+          />
+          <button type="button" (click)="addSubtask()"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <ul class="subtask-list">
+          <li *ngFor="let subtask of newTask.subtasks">
+            <span>{{ subtask.title }}</span>
+            <div class="subtask-buttons">
+              <button type="button" (click)="editSubtask(subtask.title)">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+              <button type="button" (click)="deleteSubtask(subtask.title)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="submit-button"><i class="fas fa-plus-circle"> Add Task</i></button>
+  </form>
+</div>

@@ -1,0 +1,46 @@
+<div class="task-card" draggable="true" (dragstart)="onDragStart($event)">
+  <!-- Display Mode -->
+  <ng-container *ngIf="!isEditing; else editForm">
+    <h4>{{ task.title }}</h4>
+    <p>{{ task.description }}</p>
+    <p>Priority: {{ task.priority }}</p>
+    <p>Due Date: {{ task.dueDate | date }}</p>
+    <div class="assignees">
+      <span class="assignee" *ngFor="let assignee of task.assignees">
+        {{ assignee }}
+      </span>
+    </div>
+    <ul class="subtasks">
+      <li *ngFor="let subtask of task.subtasks">
+        <app-subtask
+          [subtask]="subtask"
+          (subtaskUpdated)="onSubtaskUpdated($event)"
+          (subtaskDeleted)="onSubtaskDeleted($event)"
+        ></app-subtask>
+      </li>
+    </ul>
+    <div class="task-actions">
+      <button (click)="editTask()"><i class="fa-regular fa-pen-to-square"></i></button>
+      <button (click)="deleteTask()"><i class="fa-solid fa-trash"></i></button>
+    </div>
+  </ng-container>
+
+  <!-- Edit Mode -->
+  <ng-template #editForm>
+    <div class="edit-form">
+      <input [(ngModel)]="editedTask.title" placeholder="Title" required />
+      <textarea [(ngModel)]="editedTask.description" placeholder="Description" required></textarea>
+      <select [(ngModel)]="editedTask.priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <input type="date" [(ngModel)]="editedTask.dueDate" />
+
+      <div class="task-actions">
+        <button (click)="saveTask()"><i class="fa-regular fa-floppy-disk"></i></button>
+        <button (click)="cancelEdit()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+  </ng-template>
+</div>

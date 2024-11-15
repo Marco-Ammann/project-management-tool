@@ -1,0 +1,51 @@
+@import '../../../../../styles/styles.scss';
+
+.subtask {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.subtask input[type='checkbox'] {
+  margin-right: 10px;
+}
+
+.subtask span {
+  flex: 1;
+  font-size: 14px;
+  color: darken($text-color, 20%);
+}
+
+.subtask .completed {
+  text-decoration: line-through;
+  color: darken($text-color, 40%);
+}
+
+.subtask-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.subtask-actions button {
+  padding: 3px 5px;
+  background-color: $secondary-color;
+  opacity: 0.3;
+  color: #fff;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+}
+
+.subtask-actions button:hover {
+  opacity: 1;
+}
+
+/* Edit Mode Styles */
+.subtask input[type='text'] {
+  flex: 1;
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid lighten($text-color, 40%);
+  border-radius: $border-radius;
+}

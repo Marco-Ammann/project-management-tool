@@ -1,0 +1,24 @@
+<div class="subtask">
+  <!-- Display Mode -->
+  <ng-container *ngIf="!isEditing">
+    <input
+      type="checkbox"
+      [checked]="subtask.completed"
+      (change)="toggleSubtaskCompletion()"
+    />
+    <span [class.completed]="subtask.completed">{{ subtask.title }}</span>
+    <div class="subtask-actions">
+      <button (click)="editSubtask()"><i class="fa-regular fa-pen-to-square"></i></button>
+      <button (click)="deleteSubtask()"><i class="fa-solid fa-trash"></i></button>
+    </div>
+  </ng-container>
+
+  <!-- Edit Mode -->
+  <ng-container *ngIf="isEditing">
+    <input [(ngModel)]="editedSubtask.title" placeholder="Subtask Title" required />
+    <div class="subtask-actions">
+      <button (click)="saveSubtask()">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
+    </div>
+  </ng-container>
+</div>
